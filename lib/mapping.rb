@@ -1,5 +1,12 @@
 require 'crypt'
 
+module Mapping
+extend self
+
+@@mappings = nil
+
+# if the value is an array, then it's one we want to display when we replace (we'll display them all if we do verbose)
+# if it's not an array, we don't display it
 MAPPINGS =
 {'9768634b51ca38a98892c7086c9e3122' => ['doh', 'dangit', 'arrrggghhh'],
 '3f6c82c5640cbdb903ebffb536501e1b' => ['doh', 'dangit', 'arrrggghhh'],
@@ -12,4 +19,33 @@ MAPPINGS =
 'ede96167c49f2e8906c93567aa545aeb' => ['loser', 'dork'],
 '728bb4d112e685a8375336b0a228420b' => ['loser', 'dork'],
 'f087d92fccba7cc5bf6e861dcf1d6773' => ['loser', 'dork'],
+'95d28fed6cbc7f15f3a2419f8cbaf8bd' => "you're",
+'8e7f8eec77c0d110cc4a5af52e161c70' => '',
 }
+
+def get_regex(phrase)
+  phrase.gsub!(' ', '[\s\,\-\!-.]+')
+  /(\W)(#{phrase})(\W)/i
+end
+
+def get_mappings
+  return @@mappings if @@mappings
+  @@mappings = MAPPINGS.collect do |key, value|
+    [Crypt.decrypt(key), value]
+  end
+  @@mappings.sort! do |elem1, elem2|
+    elem2[0].length <=> elem1[0].length
+  end
+  @@mappings.collect! do |key, value|
+    [get_regex(key), value]
+  end
+  @@mappings
+end
+
+end
+
+
+# make sure we match
+# your butt is to:
+# your, butt, is
+# your - butt, is
