@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+require 'dohutil/app/origin'
+require 'logging'
+require 'mapping'
+
+opts = Doh::Options.new({'file' => [:required, "-f", "--filename <epub-filename>", "name of the epub file to modify"],
+                         'extension' => ['.new', "-e", "--extension <ext>", "string to append to the original epub filename.  If left blank, will modify in place"]
+                        }, false)
+
+puts "opts.file = #{opts.file}"
+puts "opts.extension = #{opts.extension.inspect}"
