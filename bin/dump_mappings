@@ -4,7 +4,7 @@ require 'mapping'
 require 'crypt'
 
 mappings = Mapping::MAPPINGS.collect do |key, value|
-  [Crypt.decrypt(key), value]
+  [Crypt.decrypt(key), value, key]
 end
 
 mappings.sort! do |elem1, elem2|
@@ -12,6 +12,6 @@ mappings.sort! do |elem1, elem2|
   comp != 0 ? comp : elem1[0] <=> elem2[0]
 end
 
-mappings.each do |key, value|
-  puts "#{key}: #{value}"
+mappings.each do |key, value, encrypted|
+  puts "#{encrypted}: #{key}: #{value}"
 end
