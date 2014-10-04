@@ -17,7 +17,15 @@ def clean_line(line)
       replacement = value
     end
     begin
-      line.gsub!(word, '\1' + replacement + '\3')
+      line =~ word
+      orig_phrase = $2
+      if orig_phrase
+        if orig_phrase[0] =~ /[[:upper:]]/
+          replacement[0] = replacement[0].upcase
+        end
+        puts "original phrase being replaced is: #{orig_phrase}" if Doh.config[:verbose]
+        line.gsub!(word, '\1' + replacement + '\3')
+      end
     rescue StandardError => excpt
       puts "got exception: #{excpt.inspect} on line: #{line.inspect}"
       exit 1
