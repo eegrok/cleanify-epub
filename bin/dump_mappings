@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+require 'dohutil/app/origin'
+require 'mapping'
+require 'crypt'
+
+mappings = Mapping::MAPPINGS.collect do |key, value|
+  [Crypt.decrypt(key), value]
+end
+
+mappings.sort! do |elem1, elem2|
+  comp = elem2[0].length <=> elem1[0].length
+  comp != 0 ? comp : elem1[0] <=> elem2[0]
+end
+
+mappings.each do |key, value|
+  puts "#{key}: #{value}"
+end
