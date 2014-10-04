@@ -1,0 +1,23 @@
+#!/usr/bin/env ruby
+require 'dohutil/app/origin'
+require 'mapping'
+require 'crypt'
+
+opts = Doh::Options.new({}, true, "a phrase (quoted if spaces) followed by an optional list of things to replace it with")
+
+
+def add_phrase(phrase, list)
+  lines = Mapping.read_mapping_file
+  encrypted_phrase = Crypt.encrypt(phrase)
+  if !list
+    values = "''"
+  else
+    values = "['" + list.join("', '") + "']"
+  end
+  new_line = "'#{encrypted_phrase}' => #{values},\n"
+  lines.insert(Mapping.dynamic_insert_line(lines), new_line)
+  Mapping.write_mapping_file(lines)
+end
+
+phrase = opts.varargs.shift
+add_phrase(phrase, opts.varargs)

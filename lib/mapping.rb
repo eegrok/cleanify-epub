@@ -21,6 +21,7 @@ MAPPINGS =
 'f087d92fccba7cc5bf6e861dcf1d6773' => ['loser', 'dork'],
 '95d28fed6cbc7f15f3a2419f8cbaf8bd' => "you're",
 '8e7f8eec77c0d110cc4a5af52e161c70' => '',
+# DYNAMICALLY INSERT RIGHT BEFORE THIS LINE
 }
 
 def get_regex(phrase)
@@ -41,6 +42,27 @@ def get_mappings
   end
   @@mappings
 end
+
+def mapping_filename
+  File.join(Doh.root, 'lib', 'mapping.rb')
+end
+
+def read_mapping_file
+  File.readlines(mapping_filename)
+end
+
+def dynamic_insert_line(lines)
+  lines.find_index {|line| line =~ /DYNAMICALLY INSERT RIGHT BEFORE THIS LINE/}
+end
+
+def write_mapping_file(lines)
+  outf = File.new(mapping_filename, 'w+')
+  lines.each do |line|
+    outf << line
+  end
+  outf.close
+end
+
 
 end
 
