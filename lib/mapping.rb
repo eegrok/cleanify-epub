@@ -21,6 +21,7 @@ MAPPINGS =
 'f087d92fccba7cc5bf6e861dcf1d6773' => ['loser', 'dork'],
 '95d28fed6cbc7f15f3a2419f8cbaf8bd' => "you're",
 '8e7f8eec77c0d110cc4a5af52e161c70' => '',
+'157be2f48759e163aca91e020174524b' => ['why not'],
 # DYNAMICALLY INSERT RIGHT BEFORE THIS LINE
 }
 
