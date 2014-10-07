@@ -22,12 +22,22 @@ MAPPINGS =
 '95d28fed6cbc7f15f3a2419f8cbaf8bd' => "you're",
 '8e7f8eec77c0d110cc4a5af52e161c70' => '',
 '157be2f48759e163aca91e020174524b' => ['why not'],
+'e60f02c41899c86e363f07ee147b6ac14f943e4f2cd619d546024f6a80f110cf' => ['you little'],
+'f0cdf21ec6fbe6adfdfafc923cda98775ad0ff1c699ee33a5e5e1e0ae5d1f456' => ['eat them alive'],
+'957e057203245895f4f96e87e8cc9b3f43ee808bbd69858fdd0e63a2ccf140c4' => ['little bugger'],
+'81aefe89f51f77c4d161210b4fd4b1598f9d14042b17c10ec036a15f02977f46' => ['give me that'],
+'0d8a78dfe14e8666052176c8a941f1fa' => [','],
 # DYNAMICALLY INSERT RIGHT BEFORE THIS LINE
 }
 
 def get_regex(phrase)
+  opens_non_word = phrase =~ /^\W/
+  ends_non_word = phrase =~ /\W$/
+  phrase = phrase.gsub(',', '[\s]*,[\s]*')
   phrase.gsub!(' ', '[\s\,\-\!-.]+')
-  /(\W)(#{phrase})(\W)/i
+  open_optional = opens_non_word ? '?' : ''
+  end_optional = ends_non_word ? '?' : ''
+  /(\W)#{open_optional}(#{phrase})(\W)#{end_optional}/i
 end
 
 def get_mappings
