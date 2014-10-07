@@ -3,6 +3,11 @@ require 'dohutil/app/origin'
 require 'mapping'
 require 'crypt'
 
+opts = Doh::Options.new({
+'verbose' => [false, "-v", "--verbose", "extra debug output"],
+}, false)
+
+
 mappings = Mapping::MAPPINGS.collect do |key, value|
   [Crypt.decrypt(key), value, key]
 end
@@ -13,5 +18,10 @@ mappings.sort! do |elem1, elem2|
 end
 
 mappings.each do |key, value, encrypted|
-  puts "#{encrypted}: #{key}: #{value}"
+  if opts.verbose
+    regex_str = Mapping.get_regex(key).inspect
+  else
+    regex_str = ''
+  end
+  puts "#{encrypted}: #{key}: #{value} #{regex_str}"
 end
