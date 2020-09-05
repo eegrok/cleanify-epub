@@ -6,6 +6,7 @@ extend self
 def error_out(msg, body = '')
   dohlog.error(msg)
   puts "failing out: #{msg}"
+  puts "body: #{body}"
   exit 1
 end
 
