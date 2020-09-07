@@ -43,7 +43,7 @@ def aes256_decrypt(string, key)
 end
 
 def aes256_crypt(cipher_method, string, key)
-  cipher = OpenSSL::Cipher::Cipher.new('aes-256-cbc')
+  cipher = OpenSSL::Cipher.new('aes-256-cbc')
   cipher.send(cipher_method)
   cipher.pkcs5_keyivgen(key)
   result = cipher.update(string)
