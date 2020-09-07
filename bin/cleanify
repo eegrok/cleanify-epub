@@ -7,7 +7,8 @@ require 'clean'
 require 'dohutil/config'
 
 opts = Doh::Options.new({
-'file' => [:required, "-f", "--filename <epub-filename>", "name of the epub file to modify"],
+'file' => [nil, "-f", "--filename <epub-filename>", "name of the epub file to modify -- either this or the exploded directory is required"],
+'location' => [nil, "-l", "--location <directory>", "location of exploded epub directory -- either this or a filename is required"],
 'extension' => ['.new', "-e", "--extension <ext>", "string to append to the original epub filename.  If left blank, will modify in place"],
 'debug' => [false, "-d", "--debug", "spit out debug puts's (possible expletives)"],
 'profanities' => [false, "-p", "--profanities", "include any expletives in the debug output -- forces -d"],
@@ -18,6 +19,10 @@ Doh.config[:debug] = opts.debug || opts.profanities || opts.verbose
 Doh.config[:profanities] = opts.profanities
 Doh.config[:verbose] = opts.verbose
 
-Package.unpack_epub(opts.file)
-Clean.clean_epub
-Package.pack_epub(opts.file, opts.extension)
+if opts.file
+  Package.unpack_epub(opts.file)
+  Clean.clean_epub
+  Package.pack_epub(opts.file, opts.extension)
+else
+  Clean.clean_epub(opts.location)
+end
