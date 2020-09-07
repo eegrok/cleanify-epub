@@ -11,10 +11,10 @@ def clean_line(line)
   Mapping.get_mappings.each do |word, value|
     dohlog.debug("word = #{word.inspect}")
     if value.is_a?(Array)
-      replacement = value.sample
+      replacement = value.sample.dup
       multiple_choice = true
     else
-      replacement = value
+      replacement = value.dup
     end
     begin
       line =~ word
