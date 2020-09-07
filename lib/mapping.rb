@@ -19,6 +19,7 @@ MAPPINGS =
 'ede96167c49f2e8906c93567aa545aeb' => ['loser', 'dork'],
 '728bb4d112e685a8375336b0a228420b' => ['loser', 'dork'],
 'f087d92fccba7cc5bf6e861dcf1d6773' => ['loser', 'dork'],
+'9ee708dd59ac58a35b4944cfa4cbed72' => ['loser', 'dork'],
 '95d28fed6cbc7f15f3a2419f8cbaf8bd' => "you're",
 '157be2f48759e163aca91e020174524b' => ['why not'],
 'e60f02c41899c86e363f07ee147b6ac14f943e4f2cd619d546024f6a80f110cf' => ['you little'],
@@ -39,6 +40,8 @@ MAPPINGS =
 '22c2d858affd21075c7927d662d56529' => ['pain'],
 'c6df290bf32413fb1957e138307b50f2' => ['no way'],
 '7bc51426dd87a8d9d55a1f9c7d77c79c' => ['beat you'],
+'9ee708dd59ac58a35b4944cfa4cbed72' => ['dork'],
+'90d5b6f40c2c2a3706e1c313b5a502a0' => ['near'],
 # DYNAMICALLY INSERT RIGHT BEFORE THIS LINE
 }
 
