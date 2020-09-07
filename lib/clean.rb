@@ -52,8 +52,8 @@ def clean_file(file)
   end
 end
 
-def clean_epub
-  Dir.glob("/tmp/cleanify_dir/**/*.html").each do |file|
+def clean_epub(dir = '/tmp/cleanify_dir')
+  Dir.glob(File.join(dir, '/**/*.html')).each do |file|
     if !File.directory?(file)
       puts "processing file: #{file}" if Doh.config[:debug]
       clean_file(file)
