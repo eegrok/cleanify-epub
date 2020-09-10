@@ -40,7 +40,6 @@ MAPPINGS =
 '22c2d858affd21075c7927d662d56529' => ['pain'],
 'c6df290bf32413fb1957e138307b50f2' => ['no way'],
 '7bc51426dd87a8d9d55a1f9c7d77c79c' => ['beat you'],
-'9ee708dd59ac58a35b4944cfa4cbed72' => ['dork'],
 '90d5b6f40c2c2a3706e1c313b5a502a0' => ['near'],
 # DYNAMICALLY INSERT RIGHT BEFORE THIS LINE
 }
