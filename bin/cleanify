@@ -11,13 +11,15 @@ opts = Doh::Options.new({
 'location' => [nil, "-l", "--location <directory>", "location of exploded epub directory -- either this or a filename is required"],
 'extension' => ['.new', "-e", "--extension <ext>", "string to append to the original epub filename.  If left blank, will modify in place"],
 'debug' => [false, "-d", "--debug", "spit out debug puts's (possible expletives)"],
-'profanities' => [false, "-p", "--profanities", "include any expletives in the debug output -- forces -d"],
+'mark_replacements' => [false, "-m", "--mark_replacements", "put *** before any replacements, for easy review"],
+'show_orig' => [false, "-s", "--show_orig", "include original text in the debug output -- forces -d"],
 'verbose' => [false, "-v", "--verbose", "extra debug output -- forces -d"],
 }, false)
 
 Doh.config[:debug] = opts.debug || opts.profanities || opts.verbose
-Doh.config[:profanities] = opts.profanities
+Doh.config[:show_orig] = opts.show_orig
 Doh.config[:verbose] = opts.verbose
+Doh.config[:mark_replacements] = opts.mark_replacements
 
 if opts.file
   Package.unpack_epub(opts.file)

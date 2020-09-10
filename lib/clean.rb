@@ -24,6 +24,8 @@ def clean_line(line)
           replacement[0] = replacement[0].upcase
         end
         puts "original phrase being replaced is: #{orig_phrase}" if Doh.config[:verbose]
+        if Doh.config[:mark_replacements]
+        end
         line.gsub!(word, '\1' + replacement + '\3')
       end
     rescue StandardError => excpt
@@ -34,7 +36,7 @@ def clean_line(line)
   if orig != line
     if Doh.config[:debug]
       if multiple_choice || Doh.config[:verbose]
-        if Doh.config[:profanities]
+        if Doh.config[:show_orig]
           puts "orig: #{orig}"
         end
         puts "repl: #{line}"
@@ -53,7 +55,10 @@ def clean_file(file)
 end
 
 def clean_epub(dir = '/tmp/cleanify_dir')
-  Dir.glob(File.join(dir, '/**/*.html')).each do |file|
+  html = Dir.glob(File.join(dir, '/**/*.html'))
+  xhtml = Dir.glob(File.join(dir, '/**/*.xhtml'))
+  all = html + xhtml
+  all.each do |file|
     if !File.directory?(file)
       puts "processing file: #{file}" if Doh.config[:debug]
       clean_file(file)
