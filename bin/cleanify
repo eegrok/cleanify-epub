@@ -14,12 +14,14 @@ opts = Doh::Options.new({
 'mark_replacements' => [false, "-m", "--mark_replacements", "put *** before any replacements, for easy review"],
 'show_orig' => [false, "-s", "--show_orig", "include original text in the debug output -- forces -d"],
 'verbose' => [false, "-v", "--verbose", "extra debug output -- forces -d"],
+'count' => [false, "-c", "--count", "display and count all substring variations of existing replacements -- won't make any changes"],
 }, false)
 
-Doh.config[:debug] = opts.debug || opts.profanities || opts.verbose
+Doh.config[:debug] = opts.debug || opts.show_orig || opts.verbose
 Doh.config[:show_orig] = opts.show_orig
 Doh.config[:verbose] = opts.verbose
 Doh.config[:mark_replacements] = opts.mark_replacements
+Doh.config[:count] = opts.count
 
 if opts.file
   Package.unpack_epub(opts.file)

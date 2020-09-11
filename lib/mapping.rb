@@ -4,6 +4,8 @@ module Mapping
 extend self
 
 @@mappings = nil
+@@phrases = nil
+@@substring_phrases = nil
 
 # if the value is an array, then it's one we want to display when we replace (we'll display them all if we do verbose)
 # if it's not an array, we don't display it
@@ -41,8 +43,29 @@ MAPPINGS =
 'c6df290bf32413fb1957e138307b50f2' => ['no way'],
 '7bc51426dd87a8d9d55a1f9c7d77c79c' => ['beat you'],
 '90d5b6f40c2c2a3706e1c313b5a502a0' => ['near'],
+'e88cc97da7881d263fa44e117ce3e4df' => [''],
+'e4c775cf415cafbd3ebca958b7b32b45' => [''],
+'68c8f065a40d3fee03417f0ceb975908' => [''],
+'f033bfcf308ae3f403a0812dbd5331fc' => [''],
+'7199f0e717ad3498d0c2ab70f9b186e3' => [''],
+'f1760270cd808b6eb68459db4f305ee2' => [''],
+'476878ea14a4f9c0a0b9f25363ea6964' => [''],
+'3b7441fc643c17e7c1d22a287f877922' => [''],
+'1542d292740aee9182b5983181df9652' => [''],
+'7942755c29011b26a76790c462358d0c' => [''],
+'a8431510c5f0fa2615f0cd4cccb13fa3' => [''],
+'6c384c9397b090abaed9a66f6f07d764' => [''],
+'906b71dcdcbb150699cb5408020e5c93' => [''],
+'71de4cc0b94aa632d4eab6375593c8f4' => [''],
+'a8ef723d88f92662756cb4f666c790ac' => [''],
+'199885631d29ef5963e3a2bc473d0e60' => [''],
+'ef50d8e9b1aa37150942f3fa27948bc9' => [''],
+'0566b1418d3d8dc155c74d983ec488f8' => [''],
+'0493697a9e8d46fd620e36fcd8b9fefb' => [''],
 # DYNAMICALLY INSERT RIGHT BEFORE THIS LINE
 }
+
+WHITELIST = %w(assess class password assist assault assume passenger passage grass shell assign assumption assemble overpass massive embarrassing passed pass rachelle glass brass eyeglasses audiocassette cassette cassettes classic reassure hassled encompassed embarrassment sunglasses mass passing amass massively embarrassed assure reassurance embarrassing classes bypassed passive chassis masses hassles surpassing).freeze
 
 def get_regex(phrase)
   opens_non_word = phrase =~ /^\W/
@@ -54,14 +77,28 @@ def get_regex(phrase)
   /(\W)#{open_optional}(#{phrase})(\W)#{end_optional}/i
 end
 
-def get_mappings
-  return @@mappings if @@mappings
-  @@mappings = MAPPINGS.collect do |key, value|
+def get_phrases
+  return @@phrases if @@phrases
+  @@phrases = MAPPINGS.collect do |key, value|
     [Crypt.decrypt(key), value]
   end
-  @@mappings.sort! do |elem1, elem2|
-    elem2[0].length <=> elem1[0].length
+  @@phrases.sort! do |elem1, elem2|
+    elem1[0].length <=> elem2[0].length
   end
+  @@phrases
+end
+
+def get_substring_phrases
+  return @@substring_phrases if @@substring_phrases
+  @@substring_phrases = get_phrases.dup
+  @@substring_phrases.collect! do |phrase, _replacement|
+    [phrase, /\W?(\w*#{phrase}\w*)\W?/]
+  end
+end
+
+def get_mappings
+  return @@mappings if @@mappings
+  @@mappings = get_phrases.reverse
   @@mappings.collect! do |key, value|
     [get_regex(key), value]
   end
