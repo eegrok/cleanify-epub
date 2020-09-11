@@ -68,10 +68,14 @@ MAPPINGS =
 '8d2951a28a7049bd27733bbbc7c14e65' => [''],
 '922e92d7f53a19a4f1f6f9d040345946' => [''],
 '0fe4af2c8193a972f99d5e559e53cc93' => [''],
+'3b9d8438661cd96690bae8bfce47d02c' => ['asap'],
+'3876ecafc08cf20d2d441370b3330a13' => [''],
+'670882ba0c36f270cb613cb88b59c4b5' => [''],
+'9424317a185e71ccbb3a65f997656d9e' => [''],
 # DYNAMICALLY INSERT RIGHT BEFORE THIS LINE
 }
 
-WHITELIST = %w(assess class password assist assault assume passenger passage grass shell assign assumption assemble overpass massive embarrassing passed pass rachelle glass brass eyeglasses audiocassette cassette cassettes classic reassure hassled encompassed embarrassment sunglasses mass passing amass massively embarrassed assure reassurance embarrassing classes bypassed passive chassis masses hassles surpassing gods goddess godlike rechristened mechagodzilla cockpit moorcock cocky cocktail cockroaches).freeze
+WHITELIST = %w(assess class password assist assault assume passenger passage grass shell assign assumption assemble overpass massive embarrassing passed pass rachelle glass brass eyeglasses audiocassette cassette cassettes classic reassure hassled encompassed embarrassment sunglasses mass passing amass massively embarrassed assure reassurance embarrassing classes bypassed passive chassis masses hassles surpassing gods goddess godlike rechristened mechagodzilla cockpit moorcock cocky cocktail cockroaches godzilla hello christmas dickens christopher christian).freeze
 
 def get_regex(phrase)
   opens_non_word = phrase =~ /^\W/
@@ -98,7 +102,7 @@ def get_substring_phrases
   return @@substring_phrases if @@substring_phrases
   @@substring_phrases = get_phrases.dup
   @@substring_phrases.collect! do |phrase, _replacement|
-    [phrase, /\W?(\w*#{phrase}\w*)\W?/]
+    [phrase, /\W?(\w*#{phrase}\w*)\W?/i]
   end
 end
 

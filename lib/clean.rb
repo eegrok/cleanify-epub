@@ -50,7 +50,7 @@ end
 
 def count_file(file)
   lines = File.readlines(file)
-  all_phrases = Mapping.get_substring_phrases.collect {|phrase, regex| phrase}
+  all_phrases = Mapping.get_substring_phrases.collect {|phrase, regex| phrase.downcase}
   lines.each do |line|
     Mapping.get_substring_phrases.each do |phrase, regex|
       found = line.scan(regex).flatten
@@ -62,7 +62,7 @@ def count_file(file)
             break
           end
         end
-        if !whitelisted && !all_phrases.include?(word)
+        if !whitelisted && !all_phrases.include?(word.downcase)
           @@subcount[word] += 1
         end
       end
