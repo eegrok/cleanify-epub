@@ -67,10 +67,11 @@ MAPPINGS =
 '8c186b24706636cdd9ed3bf946361c2e' => ['sitcom'],
 '8d2951a28a7049bd27733bbbc7c14e65' => [''],
 '922e92d7f53a19a4f1f6f9d040345946' => [''],
+'0fe4af2c8193a972f99d5e559e53cc93' => [''],
 # DYNAMICALLY INSERT RIGHT BEFORE THIS LINE
 }
 
-WHITELIST = %w(assess class password assist assault assume passenger passage grass shell assign assumption assemble overpass massive embarrassing passed pass rachelle glass brass eyeglasses audiocassette cassette cassettes classic reassure hassled encompassed embarrassment sunglasses mass passing amass massively embarrassed assure reassurance embarrassing classes bypassed passive chassis masses hassles surpassing gods goddess godlike rechristened mechagodzilla).freeze
+WHITELIST = %w(assess class password assist assault assume passenger passage grass shell assign assumption assemble overpass massive embarrassing passed pass rachelle glass brass eyeglasses audiocassette cassette cassettes classic reassure hassled encompassed embarrassment sunglasses mass passing amass massively embarrassed assure reassurance embarrassing classes bypassed passive chassis masses hassles surpassing gods goddess godlike rechristened mechagodzilla cockpit moorcock cocky cocktail cockroaches).freeze
 
 def get_regex(phrase)
   opens_non_word = phrase =~ /^\W/
