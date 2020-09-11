@@ -62,10 +62,15 @@ MAPPINGS =
 'ef50d8e9b1aa37150942f3fa27948bc9' => [''],
 '0566b1418d3d8dc155c74d983ec488f8' => [''],
 '0493697a9e8d46fd620e36fcd8b9fefb' => [''],
+'7517f66f4a9572c797577666d4e34a87' => [''],
+'1ad240f1a5d52fbc7be38f0a24e6b0d4' => [''],
+'8c186b24706636cdd9ed3bf946361c2e' => ['sitcom'],
+'8d2951a28a7049bd27733bbbc7c14e65' => [''],
+'922e92d7f53a19a4f1f6f9d040345946' => [''],
 # DYNAMICALLY INSERT RIGHT BEFORE THIS LINE
 }
 
-WHITELIST = %w(assess class password assist assault assume passenger passage grass shell assign assumption assemble overpass massive embarrassing passed pass rachelle glass brass eyeglasses audiocassette cassette cassettes classic reassure hassled encompassed embarrassment sunglasses mass passing amass massively embarrassed assure reassurance embarrassing classes bypassed passive chassis masses hassles surpassing).freeze
+WHITELIST = %w(assess class password assist assault assume passenger passage grass shell assign assumption assemble overpass massive embarrassing passed pass rachelle glass brass eyeglasses audiocassette cassette cassettes classic reassure hassled encompassed embarrassment sunglasses mass passing amass massively embarrassed assure reassurance embarrassing classes bypassed passive chassis masses hassles surpassing gods goddess godlike rechristened mechagodzilla).freeze
 
 def get_regex(phrase)
   opens_non_word = phrase =~ /^\W/

@@ -5,6 +5,9 @@ or
 bin/add_mapping <phrase> <replacement>
 any that aren't
 
+bin/cleanify -l <epubdir> -c
+should not display anything once that is all done
+
 after that, run:
 bin/cleanify -l <epubdir> -s -m
 
