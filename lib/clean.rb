@@ -62,8 +62,10 @@ def count_file(file)
             break
           end
         end
-        if !whitelisted && !all_phrases.include?(word.downcase)
-          @@subcount[word] += 1
+        if !whitelisted
+          if !all_phrases.include?(word.downcase) || Doh.config[:verbose]
+            @@subcount[word] += 1
+          end
         end
       end
     end
